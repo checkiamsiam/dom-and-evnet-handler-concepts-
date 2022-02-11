@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bubbling & delegate</title>
+  </head>
+  <body>
+    <section id="section-container">
+      <h1>event handler bubble</h1>
+      <ul id="ul-container">
+        <li id="item-1">Lorem, ipsum dolor.</li>
+        <li id="item-2">Veniam, minima iste!</li>
+        <li id="item-3">Laborum, libero itaque!</li>
+        <li id="item-4">Mollitia, consequatur nam.</li>
+        <li id="item-5">Voluptatibus, veritatis ullam.</li>
+      </ul>
+    </section>
+    <section id="section-container-2">
+      <h1>event handler delegate</h1>
+      <ul id="ul-container-2" class="ul-container-2">
+        <li id="item-6" class="item">Lorem, ipsum dolor.</li>
+        <li id="item-7" class="item">Veniam, minima iste!</li>
+        <li id="item-8" class="item">Laborum, libero itaque!</li>
+        <li id="item-9" class="item">Mollitia, consequatur nam.</li>
+        <li id="item-10" class="item">Voluptatibus, veritatis ullam.</li>
+      </ul>
+      <button id="add">add item</button>
+    </section>
+    <script>
+      // bubling js
+      document.getElementById("item-2").addEventListener("click", function (event) {
+        console.log("clicked li item");
+        // event.stopPropagation() dile ei element er event bade ar karo ta kaj kore na tobe ei element er moddhe onno kono event thakle kaj kore
+        event.stopImmediatePropagation(); // aikhanei bubling bondo hoye jay
+      });
+      document.getElementById("item-2").addEventListener("click", function (event2) {
+        console.log("clicked li item 2nd time");
+      });
+      document.getElementById("ul-container").addEventListener("click", function () {
+        console.log("clicked ul item");
+      });
+      document.getElementById("section-container").addEventListener("click", function () {
+        console.log("clicked full section item");
+      });
+
+      //     // delegate js
+      document.getElementById("add").addEventListener("click", function () {
+        var newIt = document.createElement("li");
+        newIt.setAttribute("class", "item");
+        newIt.innerText = "lorem kore vorem";
+        document.getElementById("ul-container-2").appendChild(newIt);
+      });
+
+      // other process to do this same
+      // const items = document.getElementsByClassName("item");
+      // for (const item of items) {
+      //   item.addEventListener("click", function (clickedItem) {
+      //     clickedItem.target.parentNode.removeChild(clickedItem.target);
+      //   });
+      // }
+      document.getElementById("ul-container-2").addEventListener("click", function () {
+        const items = document.getElementsByClassName("item");
+        for (const item of items) {
+          item.addEventListener("click", function () {
+            item.remove();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>comment</title>
+  </head>
+  <body>
+    <div id="comment-section">
+      <h1>add you comments</h1>
+      <p id="semple-comment-1">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda doloribus corrupti accusantium quidem ratione voluptatibus?
+      </p>
+      <p id="semple-comment-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto commodi neque temporibus ullam, voluptates facere.</p>
+    </div>
+    <div id="comment-box">
+      <textarea name="" id="field" cols="60" rows="3"></textarea>
+      <br>
+      <button id="send">send</button>
+    </div>
+    <script>
+      document.getElementById('send').addEventListener('click', function(){
+        var newComment = document.getElementById('field');
+        var newElementparent = document.getElementById('comment-section');
+        var newElement = document.createElement('p');
+        newElement.innerText = newComment.value;
+        newElementparent.appendChild(newElement);
+        newComment.value = '';
+      })
+    </script>
+  </body>
+</html>

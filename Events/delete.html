@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>delete</title>
+</head>
+<body>
+  <h1>exploring delete</h1>
+  <p id="delete-item">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque soluta blanditiis pariatur delectus?</p>
+  <input type="text" name="" id="field">
+  <button id="delete-button" disabled>Delete</button>
+  <script>
+    document.getElementById('delete-button').addEventListener('click' , function(){
+      document.getElementById('delete-item').remove()
+    })
+    document.getElementById('field').addEventListener('focus' , function(){
+      document.body.style.backgroundColor = 'red';
+    })
+    document.getElementById('field').addEventListener('blur' , function(){
+      document.body.style.backgroundColor = 'white';
+    })
+    document.getElementById('field').addEventListener('keyup' , function(){
+      var keypressWord =document.getElementById('field').value;
+      console.log(keypressWord)
+    })
+    //key press and keydown kisuta same e 1tep pore output pawa jay
+    ///change dile sobkorom change catch kore
+    document.getElementById('field').addEventListener('change' , function(){
+      var keypressWord =document.getElementById('field').value;
+      console.log(keypressWord)
+    })
+    document.getElementById('field').addEventListener('keyup' , function(){
+      var keypressWord =document.getElementById('field').value;
+      if(keypressWord == 'delete'){
+        document.getElementById('delete-button').removeAttribute('disabled')
+      }else{
+        document.getElementById('delete-button').setAttribute('disabled' , true)
+      }
+    })
+  </script>
+</body>
+</html>
